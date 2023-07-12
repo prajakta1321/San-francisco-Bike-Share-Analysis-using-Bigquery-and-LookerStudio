@@ -1,0 +1,168 @@
+
+-- Displaying initially all the columns fo analysis
+SELECT * FROM `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` 
+LIMIT 1000
+
+-- analysing start and end of stations
+SELECT start_station_name,
+end_station_name,
+subscriber_type 
+FROM `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` 
+LIMIT 10
+
+
+-- analysis on type of subscribers
+select subscriber_type
+from `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` 
+order by start_station_id
+limit 10;
+
+
+--count the number of trips by start name and saving as numer of trips  
+select  
+  start_station_name,
+  count(trip_id) as num_trips
+from `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+group by start_station_name
+order by num_trips 
+limit 10;
+
+-- Displaying the top 10 stations in SF city
+select  
+  start_station_name,
+  count(trip_id) as num_trips
+from `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+group by start_station_name
+order by num_trips 
+desc
+limit 10;
+
+
+--Display stations starting from 31 dec 2017
+ select  
+  start_station_name,
+  count(trip_id) as num_trips
+from `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+where start_date > '2017-12-31 00:00:00 UTC'
+group by start_station_name
+order by num_trips 
+desc
+limit 10;
+
+
+-- display particular station starting and ending zones
+select  * 
+from `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+where start_station_name = 'St James Park' 
+AND end_station_name = 'Japantown'
+order by start_station_id; 
+
+
+select  * 
+from `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+where start_station_name = 'St James Park' 
+AND end_station_name = 'Japantown'
+order by start_station_id
+limit 15; 
+
+
+select  * 
+from `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+where start_station_name = 'St James Park' 
+AND end_station_name = 'Japantown'
+order by  duration_sec
+desc
+limit 15; 
+
+
+select  duration_sec,
+bike_number,
+bike_share_for_all_trip 
+from `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+order by  duration_sec
+desc
+limit 11; 
+
+
+select bike_number
+from  `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+where bike_number > 200
+limit 15;
+
+select bike_number
+from  `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+where bike_number > 200
+order by trip_id
+limit 15;
+
+
+select duration_sec
+from  `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+where duration_sec > 2000
+order by trip_id
+limit 15;
+
+
+select duration_sec
+from  `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+where duration_sec > 2000
+order by start_date
+limit 15;
+
+
+select duration_sec
+from  `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+where duration_sec > 3000
+order by start_date
+desc
+limit 12;
+
+
+select start_station_latitude,
+start_station_longitude
+from  `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` 
+order by start_date
+desc
+limit 12;
+
+
+select start_station_latitude,
+from  `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` 
+order by start_date
+desc
+limit 12;
+
+
+select start_station_longitude,
+from  `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` 
+order by start_date
+desc
+limit 12;
+
+
+select start_station_longitude,
+from  `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` 
+order by duration_sec
+desc
+limit 12;
+
+
+select start_station_geom,
+from  `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` 
+order by duration_sec
+desc
+limit 12;
+
+
+select  subscriber_type,
+from  `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` 
+order by duration_sec
+desc
+limit 12;
+
+
+select  subscriber_type,
+from  `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips` 
+order by  trip_id
+desc
+limit 12;
